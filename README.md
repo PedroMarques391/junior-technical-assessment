@@ -3,7 +3,7 @@
 Este repositório contém o código-fonte de um sistema simples de controle de categorias, produtos e estoque.
 O projeto foi preparado como teste técnico para a posição de Desenvolvedor(a) FullStack Júnior na Plansul.
 
-O objetivo não é apenas avaliar se a aplicação “funciona”, mas como você analisa problemas, toma decisões técnicas, organiza o código e documenta sua solução.
+O objetivo não é apenas avaliar se a aplicação “funciona”, mas como você analisa problemas, toma decisões técnicas, organiza o código e documenta sua solução. 
 
 ## Objetivo do Teste
 **Avaliar a capacidade do(a) candidato(a) de:**
@@ -92,6 +92,20 @@ Crie dois arquivos de documentação:
 **2. Documentação de uso do projeto (```README_USO.md```)**
 - Como configurar, executar e utilizar a aplicação
 
+## **Entrega**
+
+A entrega deve ser realizada através de um **repositório público no GitHub**.
+
+O repositório deve ser enviado **até às 23h59 do domingo, 25/01/2026**, por e-mail para:
+
+**[consultor.ia@plansul.com.br](mailto:consultor.ia@plansul.com.br)**
+
+Com o **assunto do e-mail**:
+
+```
+Teste Técnico FullStack Júnior - [Seu Nome]
+```
+
 ## Pré-requisitos
 
 Antes de começar, certifique-se de que você tem os seguintes softwares instalados em sua máquina:
@@ -107,7 +121,7 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente de de
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
+    git clone https://github.com/Plansul/junior-technical-assessment.githttps://github.com/Plansul/junior-technical-assessment.git
     cd junior-technical-assessment
     ```
 
