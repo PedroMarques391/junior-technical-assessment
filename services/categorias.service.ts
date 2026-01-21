@@ -1,19 +1,26 @@
-import * as repository from '@/repositories/categorias.repository';
-import { categorias } from '@/generated/prisma/client';
+import { categorias } from "@/generated/prisma/client";
+import * as repository from "@/repositories/categorias.repository";
 
 export const getAllCategorias = async (): Promise<categorias[]> => {
-  return repository.findAll();
+  return await repository.findAll();
 };
 
-export const getCategoriaById = async (id: bigint): Promise<categorias | null> => {
+export const getCategoriaById = async (
+  id: bigint,
+): Promise<categorias | null> => {
   return repository.findById(id);
 };
 
-export const createCategoria = async (data: Omit<categorias, 'id' | 'criado_em'>): Promise<categorias> => {
+export const createCategoria = async (
+  data: Omit<categorias, "id" | "criado_em">,
+): Promise<categorias> => {
   return repository.create(data);
 };
 
-export const updateCategoria = async (id: bigint, data: Partial<Omit<categorias, 'id' | 'criado_em'>>): Promise<categorias> => {
+export const updateCategoria = async (
+  id: bigint,
+  data: Partial<Omit<categorias, "id" | "criado_em">>,
+): Promise<categorias> => {
   return repository.update(id, data);
 };
 

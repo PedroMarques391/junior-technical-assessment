@@ -1,8 +1,8 @@
-import prisma from '@/lib/db';
-import { produtos } from '@/generated/prisma/client';
+import { produtos } from "@/generated/prisma/client";
+import prisma from "@/lib/db";
 
 export const findAll = async (): Promise<produtos[]> => {
-  return prisma.produtos.findMany({
+  return await prisma.produtos.findMany({
     include: { categorias: true },
   });
 };
@@ -14,7 +14,9 @@ export const findById = async (id: bigint): Promise<produtos | null> => {
   });
 };
 
-export const create = async (data: Omit<produtos, 'id' | 'criado_em'>): Promise<produtos> => {
+export const create = async (
+  data: Omit<produtos, "id" | "criado_em">,
+): Promise<produtos> => {
   const { sku, nome, categoria_id, estoque_minimo, marca } = data;
 
   return prisma.produtos.create({
@@ -28,7 +30,10 @@ export const create = async (data: Omit<produtos, 'id' | 'criado_em'>): Promise<
   });
 };
 
-export const update = async (id: bigint, data: Partial<Omit<produtos, 'id' | 'criado_em'>>): Promise<produtos> => {
+export const update = async (
+  id: bigint,
+  data: Partial<Omit<produtos, "id" | "criado_em">>,
+): Promise<produtos> => {
   return prisma.produtos.update({
     where: { id },
     data,

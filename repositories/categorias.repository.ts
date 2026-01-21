@@ -1,8 +1,8 @@
-import prisma from '@/lib/db';
-import { categorias } from '@/generated/prisma/client';
+import { categorias } from "@/generated/prisma/client";
+import prisma from "@/lib/db";
 
 export const findAll = async (): Promise<categorias[]> => {
-  return prisma.categorias.findMany();
+  return await prisma.categorias.findMany();
 };
 
 export const findById = async (id: bigint): Promise<categorias | null> => {
@@ -11,13 +11,18 @@ export const findById = async (id: bigint): Promise<categorias | null> => {
   });
 };
 
-export const create = async (data: Omit<categorias, 'id' | 'criado_em'>): Promise<categorias> => {
+export const create = async (
+  data: Omit<categorias, "id" | "criado_em">,
+): Promise<categorias> => {
   return prisma.categorias.create({
     data,
   });
 };
 
-export const update = async (id: bigint, data: Partial<Omit<categorias, 'id' | 'criado_em'>>): Promise<categorias> => {
+export const update = async (
+  id: bigint,
+  data: Partial<Omit<categorias, "id" | "criado_em">>,
+): Promise<categorias> => {
   return prisma.categorias.update({
     where: { id },
     data,

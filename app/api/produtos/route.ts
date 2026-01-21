@@ -1,8 +1,32 @@
-import { NextResponse } from 'next/server';
-import * as service from '@/services/produtos.service';
+import * as service from "@/services/produtos.service";
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  return NextResponse.json({ error: 'erro desconhecido' }, { status: 500 });
+  try {
+    const produtos = await service.getAllProdutos();
+    if (!produtos) {
+      return NextResponse.json(
+        { error: "Nenhum produto encontrado" },
+        { status: 404 },
+      );
+    }
+    const produtosSerialized = produtos.map((produto) => {
+      return JSON.parse(
+        JSON.stringify(produto, (key, value) =>
+          typeof value === "bigint" ? value.toString() : value,
+        ),
+      );
+    });
+    return NextResponse.json(produtosSerialized);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error ? error.message : "Falha ao obter produtos",
+      },
+      { status: 500 },
+    );
+  }
 }
 
 export async function POST(request: Request) {
@@ -11,7 +35,10 @@ export async function POST(request: Request) {
     const { sku, nome, categoria_id, estoque_minimo, marca } = body;
 
     if (!sku || !nome) {
-      return NextResponse.json({ error: 'SKU e Nome são obrigatórios' }, { status: 400 });
+      return NextResponse.json(
+        { error: "SKU e Nome são obrigatórios" },
+        { status: 400 },
+      );
     }
 
     const newProduto = await service.createProduto({
@@ -23,12 +50,18 @@ export async function POST(request: Request) {
     });
     const newProdutoSerialized = JSON.parse(
       JSON.stringify(newProduto, (key, value) =>
-        typeof value === 'bigint' ? value.toString() : value
-      )
+        typeof value === "bigint" ? value.toString() : value,
+      ),
     );
     return NextResponse.json(newProdutoSerialized, { status: 201 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Falha ao criar produto' }, { status: 500 });
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error ? error.message : "Falha ao criar produto",
+      },
+      { status: 500 },
+    );
   }
 }
