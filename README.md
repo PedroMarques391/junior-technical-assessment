@@ -16,7 +16,7 @@ O objetivo não é apenas avaliar se a aplicação “funciona”, mas como voc�
 
 ## Seu Desafio
 
-O desafio está dividido em três partes principais: debugging, reimplementação de funcionalidades e documentação/reflexão.
+O desafio está dividido em cinco partes principais: debugging, reimplementação e implementação de funcionalidades, reflexão e documentação.
 
 ### Parte 1: Debugging do Backend
 Ao acessar a listagem de produtos, ocorre um erro na API.
