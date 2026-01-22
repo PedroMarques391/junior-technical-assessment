@@ -11,6 +11,15 @@ export const findById = async (id: bigint): Promise<estoque | null> => {
   });
 };
 
+export const findByProdutoId = async (
+  produto_id: bigint,
+): Promise<estoque | null> => {
+  return prisma.estoque.findUnique({
+    where: { produto_id },
+    include: { produtos: true },
+  });
+};
+
 export const update = async (
   id: bigint,
   data: Partial<Omit<estoque, "id" | "atualizado_em" | "produto_id">>,
