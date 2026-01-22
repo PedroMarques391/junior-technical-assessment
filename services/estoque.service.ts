@@ -7,7 +7,7 @@ export const getAllEstoque = async (): Promise<estoque[]> => {
 
 export const updateEstoque = async (
   id: bigint,
-  data: Partial<estoque>,
+  data: Partial<Omit<estoque, 'id' | 'produto_id' | 'atualizado_em'>>,
 ): Promise<estoque> => {
   const hasEstoque = await repository.findById(id);
   if (!hasEstoque) {

@@ -9,7 +9,8 @@ export async function PUT(request: Request, { params }: Params) {
   try {
     const id = BigInt((await params).id);
     const body = await request.json();
-    const updatedEstoque = await service.updateEstoque(id, body);
+    const { quantidade } = body;
+    const updatedEstoque = await service.updateEstoque(id, { quantidade });
     const updatedEstoqueSerialized = JSON.parse(
       JSON.stringify(updatedEstoque, (key, value) =>
         typeof value === "bigint" ? value.toString() : value,

@@ -13,10 +13,13 @@ export const findById = async (id: bigint): Promise<estoque | null> => {
 
 export const update = async (
   id: bigint,
-  data: Partial<estoque>,
+  data: Partial<Omit<estoque, "id" | "atualizado_em" | "produto_id">>,
 ): Promise<estoque> => {
   return prisma.estoque.update({
     where: { id },
-    data,
+    data: {
+      ...data,
+      atualizado_em: new Date(),
+    },
   });
 };

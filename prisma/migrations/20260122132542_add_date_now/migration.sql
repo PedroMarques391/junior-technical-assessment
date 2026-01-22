@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "estoque" ALTER COLUMN "atualizado_em" SET DEFAULT CURRENT_TIMESTAMP;

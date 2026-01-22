@@ -29,11 +29,11 @@ model produtos {
 }
 
 model estoque {
-  id            BigInt    @id @default(autoincrement())
-  produto_id    BigInt    @unique
-  quantidade    Int       @default(0)
-  atualizado_em DateTime? @default(now()) @db.Timestamp(6)
-  produtos      produtos  @relation(fields: [produto_id], references: [id], onDelete: Cascade)
+  id            BigInt   @id @default(autoincrement())
+  produto_id    BigInt   @unique
+  quantidade    Int      @default(0)
+  atualizado_em DateTime @updatedAt
+  produtos      produtos @relation(fields: [produto_id], references: [id], onDelete: Cascade)
 }
 
 model estoque_movimentacoes {
