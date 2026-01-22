@@ -4,6 +4,7 @@ import prisma from "@/lib/db";
 export const findAll = async (): Promise<estoque_movimentacoes[]> => {
   return await prisma.estoque_movimentacoes.findMany({
     orderBy: { criado_em: "desc" },
+    include: { produtos: true },
   });
 };
 
