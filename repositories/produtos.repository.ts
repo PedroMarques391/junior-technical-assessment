@@ -3,14 +3,22 @@ import prisma from "@/lib/db";
 
 export const findAll = async (): Promise<produtos[]> => {
   return await prisma.produtos.findMany({
-    include: { categorias: true },
+    include: { 
+      categorias: true,
+      estoque: true,
+      estoque_movimentacoes: true,
+    },
   });
 };
 
 export const findById = async (id: bigint): Promise<produtos | null> => {
   return prisma.produtos.findUnique({
     where: { id },
-    include: { categorias: true },
+    include: { 
+      categorias: true,
+      estoque: true,
+      estoque_movimentacoes: true,
+    },
   });
 };
 
