@@ -7,11 +7,12 @@ export const findAll = async (): Promise<estoque_movimentacoes[]> => {
   });
 };
 
-export const movimentacoesPorProduto = async (
+export const findMovimentacoesByProdutoId = async (
   produto_id: bigint,
 ): Promise<estoque_movimentacoes[]> => {
   return prisma.estoque_movimentacoes.findMany({
     where: { produto_id },
+    include: { produtos: true },
   });
 };
 
