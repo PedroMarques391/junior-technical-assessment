@@ -19,6 +19,7 @@ export function ProdutosView() {
   const [productIdToDelete, setProductIdToDelete] = useState<string | null>(
     null,
   );
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleEdit = (id: string) => {
     const productToEdit = produtos?.find((prod) => prod.id === id);
@@ -50,8 +51,16 @@ export function ProdutosView() {
         onEdit={handleEdit}
         onDelete={handleDelete}
         isLoading={isLoading}
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchComponent={
-          <Input placeholder="Buscar produtos..." className="max-w-sm" />
+          <Input
+            placeholder="Buscar produtos por nome, ID ou SKU..."
+            className="max-w-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            type="search"
+          />
         }
         actionButtons={[
           <Button key="new-product" onClick={() => setIsAddModalOpen(true)}>

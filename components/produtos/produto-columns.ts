@@ -8,14 +8,17 @@ export const produtoColumns: ColumnDef<Produto>[] = [
   {
     accessorKey: "id",
     header: "ID",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "sku",
     header: "SKU",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "nome",
     header: "Nome",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "categorias.nome",
@@ -24,14 +27,17 @@ export const produtoColumns: ColumnDef<Produto>[] = [
       const category = row.original.categorias;
       return category ? category.nome : "N/A";
     },
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "estoque_minimo",
     header: "Estoque Mínimo",
+    enableGlobalFilter: false,
   },
   {
     accessorKey: "marca",
     header: "Marca",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "criado_em",
