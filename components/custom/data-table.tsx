@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { List } from "lucide-react";
 
 interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -164,6 +165,14 @@ export function DataTable<TData extends { id: string }, TValue>({
           </TableBody>
         </Table>
       </div>
+      <div className="flex items-center justify-start py-4">
+        <List className="mr-2 h-4 w-4" />
+        <span className="text-sm text-muted-foreground">
+          Exibindo {table.getRowModel().rows.length} de{" "}
+          {table.getCoreRowModel().rows.length} resultados
+        </span>
+      </div>
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
