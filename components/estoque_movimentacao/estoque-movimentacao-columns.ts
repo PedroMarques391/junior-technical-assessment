@@ -9,6 +9,7 @@ export const estoqueMovimentacaoColumns: ColumnDef<EstoqueMovimetacao>[] = [
     accessorKey: "id",
     header: "ID",
     enableGlobalFilter: false,
+    enableSorting: false,
   },
   {
     accessorKey: "produtos.nome",
@@ -29,6 +30,7 @@ export const estoqueMovimentacaoColumns: ColumnDef<EstoqueMovimetacao>[] = [
     accessorKey: "tipo",
     header: "Tipo",
     enableGlobalFilter: true,
+    enableSorting: false,
   },
 
   {

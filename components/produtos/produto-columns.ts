@@ -33,6 +33,7 @@ export const produtoColumns: ColumnDef<Produto>[] = [
       return categoria?.id === filterValue;
     },
     enableGlobalFilter: false,
+    enableSorting: false,
   },
   {
     accessorKey: "estoque_minimo",
