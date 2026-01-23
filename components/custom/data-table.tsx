@@ -2,6 +2,8 @@
 
 import {
   ColumnDef,
+  ColumnFiltersState,
+  OnChangeFn,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -32,6 +34,8 @@ interface DataTableProps<TData extends { id: string }, TValue> {
   actionButtons?: React.ReactNode[];
   searchValue?: string;
   onSearchChange?: (value: string) => void;
+  columnFilters?: ColumnFiltersState;
+  onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>;
 }
 
 export function DataTable<TData extends { id: string }, TValue>({
@@ -45,6 +49,8 @@ export function DataTable<TData extends { id: string }, TValue>({
   actionButtons,
   searchValue,
   onSearchChange,
+  columnFilters,
+  onColumnFiltersChange,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -54,8 +60,10 @@ export function DataTable<TData extends { id: string }, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       globalFilter: searchValue,
+      columnFilters: columnFilters || [],
     },
     onGlobalFilterChange: onSearchChange,
+    onColumnFiltersChange: onColumnFiltersChange,
     globalFilterFn: "includesString",
   });
 
