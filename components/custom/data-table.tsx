@@ -1,14 +1,17 @@
 "use client";
 
-import * as React from "react";
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
+  getFilteredRowModel,
   getPaginationRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
 
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -17,8 +20,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,10 +30,8 @@ interface DataTableProps<TData extends { id: string }, TValue> {
   filterComponent?: React.ReactNode;
   searchComponent?: React.ReactNode;
   actionButtons?: React.ReactNode[];
-  // TODO: Implement actual pagination logic
-  // currentPage?: number;
-  // totalPages?: number;
-  // onPageChange?: (page: number) => void;
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
 }
 
 export function DataTable<TData extends { id: string }, TValue>({
@@ -44,12 +43,20 @@ export function DataTable<TData extends { id: string }, TValue>({
   filterComponent,
   searchComponent,
   actionButtons,
+  searchValue,
+  onSearchChange,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(), // Enable pagination
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: "includesString",
+    state: {
+      globalFilter: searchValue,
+    },
+    onGlobalFilterChange: onSearchChange,
   });
 
   const generateSkeletonRow = (columnCount: number, key: number) => (
