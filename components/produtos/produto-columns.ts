@@ -21,13 +21,18 @@ export const produtoColumns: ColumnDef<Produto>[] = [
     enableGlobalFilter: true,
   },
   {
+    id: "categoriaId",
     accessorKey: "categorias.nome",
     header: "Categoria",
     cell: ({ row }) => {
       const category = row.original.categorias;
       return category ? category.nome : "N/A";
     },
-    enableGlobalFilter: true,
+    filterFn: (row, columnId, filterValue) => {
+      const categoria = row.original.categorias;
+      return categoria?.id === filterValue;
+    },
+    enableGlobalFilter: false,
   },
   {
     accessorKey: "estoque_minimo",
@@ -37,7 +42,7 @@ export const produtoColumns: ColumnDef<Produto>[] = [
   {
     accessorKey: "marca",
     header: "Marca",
-    enableGlobalFilter: true,
+    enableGlobalFilter: false,
   },
   {
     accessorKey: "criado_em",
@@ -46,5 +51,6 @@ export const produtoColumns: ColumnDef<Produto>[] = [
       const date = new Date(row.getValue("criado_em"));
       return format(date, "dd/MM/yyyy HH:mm");
     },
+    enableGlobalFilter: false,
   },
 ];

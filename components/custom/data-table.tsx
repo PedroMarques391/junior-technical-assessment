@@ -8,7 +8,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import * as React from "react";
 
