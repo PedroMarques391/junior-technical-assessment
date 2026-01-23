@@ -12,6 +12,7 @@ export function EstoqueView() {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState<Estoque | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleEdit = (id: string) => {
     const stockToEdit = data?.find((stock) => stock.id === id);
@@ -35,8 +36,16 @@ export function EstoqueView() {
         data={data || []}
         onEdit={handleEdit}
         isLoading={isLoading}
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchComponent={
-          <Input placeholder="Buscar Estoque..." className="max-w-sm" />
+          <Input
+            placeholder="Buscar por nome ou ID do produto..."
+            className="max-w-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            type="search"
+          />
         }
       />
 

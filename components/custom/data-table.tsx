@@ -6,7 +6,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  useReactTable,
+  useReactTable
 } from "@tanstack/react-table";
 import * as React from "react";
 
@@ -52,11 +52,11 @@ export function DataTable<TData extends { id: string }, TValue>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    globalFilterFn: "includesString",
     state: {
       globalFilter: searchValue,
     },
     onGlobalFilterChange: onSearchChange,
+    globalFilterFn: "includesString",
   });
 
   const generateSkeletonRow = (columnCount: number, key: number) => (
