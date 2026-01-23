@@ -56,7 +56,7 @@ export function CategoriasView() {
         onSearchChange={setSearchTerm}
         searchComponent={
           <Input
-            placeholder="Buscar categorias por nome ou ID"
+            placeholder="Buscar categorias por nome ou ID..."
             className="max-w-sm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
