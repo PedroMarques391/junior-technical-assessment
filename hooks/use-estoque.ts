@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import z from "zod";
-import { Produto } from "./use-produtos";
 
 export const updateStockSchema = z.object({
   id: z.string(),
@@ -14,7 +13,10 @@ export interface Estoque {
   produto_id: string;
   quantidade: number;
   data: string;
-  produto: Produto[];
+  produtos: {
+    nome: string;
+    estoque_minimo: number;
+  };
 }
 
 const fetchStock = async (): Promise<Estoque[]> => {

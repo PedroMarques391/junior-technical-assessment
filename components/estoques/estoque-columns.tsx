@@ -23,6 +23,30 @@ export const estoqueColumns: ColumnDef<Estoque>[] = [
   {
     accessorKey: "quantidade",
     header: "Quantidade",
+    cell: ({ row }) => {
+      const amount = row.original.quantidade;
+      const minimumStock = row.original.produtos.estoque_minimo;
+
+      let className =
+        "p-2 rounded-md font-medium text-sm inline-block h-full w-full text-left ";
+
+      if (amount < minimumStock) {
+        className += " bg-red-100 text-red-800";
+        return <span className={className}>{amount}</span>;
+      }
+
+      if (amount === minimumStock) {
+        className += " bg-yellow-100 text-yellow-800";
+        return <span className={className}>{amount}</span>;
+      }
+
+      className += " bg-green-100 text-green-800";
+      return <span className={className}>{amount}</span>;
+    },
+  },
+  {
+    accessorKey: "produtos.estoque_minimo",
+    header: "Estoque Mínimo",
     enableGlobalFilter: false,
   },
 
