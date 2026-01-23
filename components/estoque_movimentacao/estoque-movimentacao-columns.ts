@@ -8,22 +8,27 @@ export const estoqueMovimentacaoColumns: ColumnDef<EstoqueMovimetacao>[] = [
   {
     accessorKey: "id",
     header: "ID",
+    enableGlobalFilter: false,
   },
   {
     accessorKey: "produtos.nome",
     header: "Nome Produto",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "produto_id",
     header: "ID Produto",
+    enableGlobalFilter: false,
   },
   {
     accessorKey: "quantidade",
     header: "Quantidade",
+    enableGlobalFilter: true,
   },
   {
     accessorKey: "tipo",
     header: "Tipo",
+    enableGlobalFilter: true,
   },
 
   {
@@ -33,5 +38,6 @@ export const estoqueMovimentacaoColumns: ColumnDef<EstoqueMovimetacao>[] = [
       const date = new Date(row.getValue("criado_em"));
       return format(date, "dd/MM/yyyy HH:mm");
     },
+    enableGlobalFilter: false,
   },
 ];

@@ -14,6 +14,7 @@ export function EstoqueMovimentacaoView() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleDelete = (id: string) => {
     setSelectedId(id);
@@ -35,8 +36,15 @@ export function EstoqueMovimentacaoView() {
         data={data || []}
         isLoading={isLoading}
         onDelete={handleDelete}
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchComponent={
-          <Input placeholder="Buscar Estoque..." className="max-w-sm" />
+          <Input
+            placeholder="Buscar por quantidade ou produto..."
+            className="max-w-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         }
         actionButtons={[
           <Button key="new-product" onClick={() => setIsAddModalOpen(true)}>
