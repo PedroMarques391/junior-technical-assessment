@@ -94,7 +94,7 @@ export function ProdutosView() {
         onColumnFiltersChange={setColumnFilters}
         filterComponent={
           <Select value={categoryFilter} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full max-w-48">
               <SelectValue placeholder="Selecione uma categoria" />
             </SelectTrigger>
             <SelectContent>

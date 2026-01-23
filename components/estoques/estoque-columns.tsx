@@ -43,6 +43,21 @@ export const estoqueColumns: ColumnDef<Estoque>[] = [
       className += " bg-green-100 text-green-800";
       return <span className={className}>{amount}</span>;
     },
+    filterFn: (row, id, value) => {
+      const amount = row.original.quantidade;
+      const minimumStock = row.original.produtos.estoque_minimo;
+
+      if (value === "low") {
+        return amount < minimumStock;
+      }
+      if (value === "minimum") {
+        return amount === minimumStock;
+      }
+      if (value === "ok") {
+        return amount > minimumStock;
+      }
+      return true;
+    },
   },
   {
     accessorKey: "produtos.estoque_minimo",
