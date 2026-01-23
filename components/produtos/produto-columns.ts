@@ -1,8 +1,8 @@
 "use client";
 
+import { Produto } from "@/hooks/use-produtos";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { Produto } from "@/hooks/use-produtos";
 
 export const produtoColumns: ColumnDef<Produto>[] = [
   {

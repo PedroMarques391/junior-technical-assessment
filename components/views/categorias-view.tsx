@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { useCategories, Categoria } from "@/hooks/use-categorias";
-import { DataTable } from "@/components/custom/data-table";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { categoriaColumns } from "@/components/categorias/categoria-columns";
 import { AddCategoryModal } from "@/components/categorias/categoria-add-modal";
-import { EditCategoryModal } from "@/components/categorias/categoria-edit-modal";
+import { categoriaColumns } from "@/components/categorias/categoria-columns";
 import { DeleteCategoryDialog } from "@/components/categorias/categoria-delete-dialog";
+import { EditCategoryModal } from "@/components/categorias/categoria-edit-modal";
+import { DataTable } from "@/components/custom/data-table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Categoria, useCategories } from "@/hooks/use-categorias";
+import { useState } from "react"; // ← Removido useMemo
 
 export function CategoriasView() {
   const { data: categories, isLoading, isError, error } = useCategories();
@@ -21,6 +21,7 @@ export function CategoriasView() {
   const [categoryIdToDelete, setCategoryIdToDelete] = useState<string | null>(
     null,
   );
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleEdit = (id: string) => {
     const categoryToEdit = categories?.find((cat) => cat.id === id);
@@ -51,8 +52,16 @@ export function CategoriasView() {
         onEdit={handleEdit}
         onDelete={handleDelete}
         isLoading={isLoading}
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchComponent={
-          <Input placeholder="Buscar categorias..." className="max-w-sm" />
+          <Input
+            placeholder="Buscar categorias por nome ou ID"
+            className="max-w-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            type="search"
+          />
         }
         actionButtons={[
           <Button key="new-category" onClick={() => setIsAddModalOpen(true)}>
