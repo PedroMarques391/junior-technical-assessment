@@ -37,10 +37,13 @@ const createMovements = async (data: EstoqueMovimetacaoPayload) => {
     },
     body: JSON.stringify(data),
   });
+
+  const responseData = await response.json();
+
   if (!response.ok) {
-    throw new Error("Failed to create stock movement");
+    throw new Error(responseData.error || "Failed to create stock movement");
   }
-  return response.json();
+  return responseData;
 };
 
 export const useStockMovements = () => {
@@ -50,10 +53,29 @@ export const useStockMovements = () => {
   });
 };
 
+const deleteMovement = async (id: string) => {
+  const response = await fetch(`/api/estoque-movimentacoes/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to delete stock movement");
+  }
+};
+
 export const useCreateMovement = () => {
   const queryClient = useQueryClient();
   return useMutation<EstoqueMovimetacao, Error, EstoqueMovimetacaoPayload>({
     mutationFn: createMovements,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["stock-movements"] });
+    },
+  });
+};
+
+export const useDeleteMovement = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, string>({
+    mutationFn: deleteMovement,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["stock-movements"] });
     },
