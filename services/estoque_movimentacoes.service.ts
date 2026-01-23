@@ -27,3 +27,11 @@ export const createMovimentacao = async (
   }
   return await repository.create(data);
 };
+
+export const removeMovimentacao = async (id: bigint) => {
+  const movimentacao = await repository.getMovimentacaoById(id);
+  if (!movimentacao) {
+    throw new Error(`Movimentação com ID ${id} não existe.`);
+  }
+  return await repository.remove(id);
+};

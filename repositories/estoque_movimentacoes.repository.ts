@@ -8,6 +8,14 @@ export const findAll = async (): Promise<estoque_movimentacoes[]> => {
   });
 };
 
+export const getMovimentacaoById = async (
+  id: bigint,
+): Promise<estoque_movimentacoes | null> => {
+  return prisma.estoque_movimentacoes.findUnique({
+    where: { id },
+  });
+};
+
 export const findMovimentacoesByProdutoId = async (
   produto_id: bigint,
 ): Promise<estoque_movimentacoes[]> => {
@@ -40,5 +48,11 @@ export const create = async (
       },
     });
     return movimentacao;
+  });
+};
+
+export const remove = async (id: bigint): Promise<estoque_movimentacoes> => {
+  return prisma.estoque_movimentacoes.delete({
+    where: { id },
   });
 };
