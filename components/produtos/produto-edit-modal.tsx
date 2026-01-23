@@ -1,11 +1,15 @@
 "use client";
 
-import * as z from "zod";
-import { useUpdateProduto, updateProdutoSchema, Produto } from "@/hooks/use-produtos";
-import { useCategories } from "@/hooks/use-categorias";
 import { BaseModal } from "@/components/custom/base-modal";
 import { DynamicForm } from "@/components/custom/dynamic-form";
+import { useCategories } from "@/hooks/use-categorias";
+import {
+  Produto,
+  updateProdutoSchema,
+  useUpdateProduto
+} from "@/hooks/use-produtos";
 import { toast } from "sonner";
+import * as z from "zod";
 
 export function EditProductModal({
   isOpen,
@@ -88,6 +92,7 @@ export function EditProductModal({
           schema={updateProdutoSchema}
           onSubmit={handleSubmit}
           defaultValues={{
+            id: product.id,
             nome: product.nome,
             sku: product.sku,
             categoria_id: product.categoria_id || undefined,
