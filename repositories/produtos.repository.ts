@@ -3,7 +3,7 @@ import prisma from "@/lib/db";
 
 export const findAll = async (): Promise<produtos[]> => {
   return await prisma.produtos.findMany({
-    include: { 
+    include: {
       categorias: true,
       estoque: true,
       estoque_movimentacoes: true,
@@ -14,7 +14,7 @@ export const findAll = async (): Promise<produtos[]> => {
 export const findById = async (id: bigint): Promise<produtos | null> => {
   return prisma.produtos.findUnique({
     where: { id },
-    include: { 
+    include: {
       categorias: true,
       estoque: true,
       estoque_movimentacoes: true,
@@ -26,8 +26,7 @@ export const create = async (
   data: Omit<produtos, "id" | "criado_em">,
 ): Promise<produtos> => {
   const { sku, nome, categoria_id, estoque_minimo, marca } = data;
-
-  return prisma.produtos.create({
+  const newProduto = await prisma.produtos.create({
     data: {
       sku,
       nome,
@@ -36,6 +35,7 @@ export const create = async (
       marca,
     },
   });
+  return newProduto;
 };
 
 export const update = async (
