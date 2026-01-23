@@ -165,32 +165,34 @@ export function DataTable<TData extends { id: string }, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-start py-4">
-        <List className="mr-2 h-4 w-4" />
-        <span className="text-sm text-muted-foreground">
-          Exibindo {table.getRowModel().rows.length} de{" "}
-          {table.getCoreRowModel().rows.length} resultados
-        </span>
-      </div>
+      <footer className="flex justify-between py-8">
+        <div className="flex">
+          <List className="mr-2 h-4 w-4" />
+          <span className="text-sm text-muted-foreground">
+            Exibindo {table.getRowModel().rows.length} de{" "}
+            {table.getCoreRowModel().rows.length} resultados
+          </span>
+        </div>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
-      </div>
+        <div className="flex space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      </footer>
     </div>
   );
 }
