@@ -1,10 +1,14 @@
 "use client";
 
-import * as z from "zod";
-import { useUpdateCategory, updateCategoriaSchema, Categoria } from "@/hooks/use-categorias";
 import { BaseModal } from "@/components/custom/base-modal";
 import { DynamicForm } from "@/components/custom/dynamic-form";
+import {
+  Categoria,
+  updateCategoriaSchema,
+  useUpdateCategory,
+} from "@/hooks/use-categorias";
 import { toast } from "sonner";
+import * as z from "zod";
 
 export function EditCategoryModal({
   isOpen,
@@ -60,6 +64,7 @@ export function EditCategoryModal({
           schema={updateCategoriaSchema}
           onSubmit={handleSubmit}
           defaultValues={{
+            id: category.id,
             nome: category.nome,
             descricao: category.descricao || "",
           }}

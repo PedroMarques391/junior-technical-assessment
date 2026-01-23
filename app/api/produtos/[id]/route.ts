@@ -1,25 +1,28 @@
-import { NextResponse } from 'next/server';
-import * as service from '@/services/produtos.service';
+import * as service from "@/services/produtos.service";
+import { NextResponse } from "next/server";
 
 interface Params {
-  params: Promise<{ id: string; }>;
+  params: Promise<{ id: string }>;
 }
 export async function GET(request: Request, { params }: Params) {
   try {
     const id = BigInt((await params).id);
     const produto = await service.getProdutoById(id);
     if (!produto) {
-      return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
+      return NextResponse.json(
+        { error: "Produto não encontrado" },
+        { status: 404 },
+      );
     }
     const produtoSerialized = JSON.parse(
       JSON.stringify(produto, (key, value) =>
-        typeof value === 'bigint' ? value.toString() : value
-      )
+        typeof value === "bigint" ? value.toString() : value,
+      ),
     );
     return NextResponse.json(produtoSerialized);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
+    return NextResponse.json({ error: "ID inválido" }, { status: 400 });
   }
 }
 
@@ -30,7 +33,7 @@ export async function PUT(request: Request, { params }: Params) {
     const { sku, nome, categoria_id, estoque_minimo, marca } = body;
 
     const updatedProduto = await service.updateProduto(id, {
-      sku,
+      sku: sku.toUpperCase(),
       nome,
       categoria_id: categoria_id ? BigInt(categoria_id) : undefined,
       estoque_minimo,
@@ -38,29 +41,39 @@ export async function PUT(request: Request, { params }: Params) {
     });
     const updatedProdutoSerialized = JSON.parse(
       JSON.stringify(updatedProduto, (key, value) =>
-        typeof value === 'bigint' ? value.toString() : value
-      )
+        typeof value === "bigint" ? value.toString() : value,
+      ),
     );
     return NextResponse.json(updatedProdutoSerialized);
   } catch (error) {
-    if (error instanceof Error && error.message.includes('not found')) {
-      return NextResponse.json({ error: 'Produto não encontrado para atualização' }, { status: 404 });
+    if (error instanceof Error && error.message.includes("not found")) {
+      return NextResponse.json(
+        { error: "Produto não encontrado para atualização" },
+        { status: 404 },
+      );
     }
-    return NextResponse.json({ error: 'Falha ao atualizar produto' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Falha ao atualizar produto" },
+      { status: 500 },
+    );
   }
 }
 
-export async function DELETE(
-  request: Request, { params }: Params
-) {
+export async function DELETE(request: Request, { params }: Params) {
   try {
     const id = BigInt((await params).id);
     await service.deleteProduto(id);
     return new NextResponse(null, { status: 204 });
   } catch (error) {
-    if (error instanceof Error && error.message.includes('not found')) {
-      return NextResponse.json({ error: 'Produto não encontrado para exclusão' }, { status: 404 });
+    if (error instanceof Error && error.message.includes("not found")) {
+      return NextResponse.json(
+        { error: "Produto não encontrado para exclusão" },
+        { status: 404 },
+      );
     }
-    return NextResponse.json({ error: 'Falha ao excluir produto' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Falha ao excluir produto" },
+      { status: 500 },
+    );
   }
 }

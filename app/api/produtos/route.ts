@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
 
     const newProduto = await service.createProduto({
-      sku,
+      sku: sku.toUpperCase(),
       nome,
       categoria_id: categoria_id ? BigInt(categoria_id) : null,
       estoque_minimo,
