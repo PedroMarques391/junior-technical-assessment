@@ -60,7 +60,7 @@ export function DataTable<TData extends { id: string }, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       globalFilter: searchValue,
-      columnFilters: columnFilters || [],
+      columnFilters: columnFilters,
     },
     onGlobalFilterChange: onSearchChange,
     onColumnFiltersChange: onColumnFiltersChange,
