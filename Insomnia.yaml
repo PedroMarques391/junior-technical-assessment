@@ -1,0 +1,438 @@
+type: collection.insomnia.rest/5.0
+name: "junior-technical-assessment "
+meta:
+  id: wrk_cc20c93463c84e63b4c172f0d8864375
+  created: 1769021513923
+  modified: 1769021513923
+  description: ""
+collection:
+  - name: Estoque
+    meta:
+      id: fld_d40696aef5264eeb883c54bf3039ff46
+      created: 1769050469515
+      modified: 1769219907448
+      sortKey: -1769050469515
+      description: ""
+    children:
+      - url: http://localhost:3000/api/estoque
+        name: get-all
+        meta:
+          id: req_d316a7b183c0454aa9c41e537f220082
+          created: 1769021525627
+          modified: 1769050492212
+          isPrivate: false
+          description: ""
+          sortKey: -1769050481956
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/estoque/3
+        name: update-by-id
+        meta:
+          id: req_73b8acf0411647c7b017e74a0ab820e0
+          created: 1769050519915
+          modified: 1769216410447
+          isPrivate: false
+          description: ""
+          sortKey: -1768606103651.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"quantidade": 10
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Produtos
+    meta:
+      id: fld_31cab794671e43d4ae27566d466fd256
+      created: 1769051270875
+      modified: 1769219909778
+      sortKey: -1769051270875
+      description: ""
+    children:
+      - url: http://localhost:3000/api/produtos
+        name: get-all-products
+        meta:
+          id: req_08d007b008aa4d2abc5b8b7b34b84b8b
+          created: 1769051276302
+          modified: 1769051316944
+          isPrivate: false
+          description: ""
+          sortKey: -1769051280260
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/produtos/16
+        name: get-product-by-id
+        meta:
+          id: req_bb7800c40b3449609437e517e6db530c
+          created: 1769219235557
+          modified: 1769219886235
+          isPrivate: false
+          description: ""
+          sortKey: -1769050881108
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/produtos
+        name: create-product
+        meta:
+          id: req_2124f9e8b7cd4a93a471c95c668a94c9
+          created: 1769219349033
+          modified: 1769219444716
+          isPrivate: false
+          description: ""
+          sortKey: -1769051080684
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            
+            {
+            	"sku": "LIM-011",
+              "nome": "Detergente Líquido 500ml",
+              "categoria_id": "1",
+              "estoque_minimo": 12,
+              "marca": "Ypê"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/produtos/16
+        name: update-product
+        meta:
+          id: req_f3af34ea30f845b688673c4bf9f1ce4f
+          created: 1769219522238
+          modified: 1769219768423
+          isPrivate: false
+          description: ""
+          sortKey: -1769051280360
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "sku": "LIM-00100",
+              "nome": "Detergente Líquido 1L",
+              "categoria_id": "1",
+              "estoque_minimo": 15,
+              "marca": "Ypê"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/produtos/16
+        name: delete-product
+        meta:
+          id: req_7e8f3a091a2b4b5cbd53014a49ce845c
+          created: 1769219858997
+          modified: 1769219874844
+          isPrivate: false
+          description: ""
+          sortKey: -1769051280310
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Estoque_Movimentacoes
+    meta:
+      id: fld_ab936e7d72fb46e9b70f4e793fba5201
+      created: 1769104110563
+      modified: 1769104117835
+      sortKey: -1769104110563
+      description: ""
+    children:
+      - url: http://localhost:3000/api/estoque-movimentacoes
+        name: get-movements
+        meta:
+          id: req_0b211b4dbd484551a8c843a9a6661d3a
+          created: 1769104120744
+          modified: 1769119774801
+          isPrivate: false
+          description: ""
+          sortKey: -1769104120744
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/estoque-movimentacoes
+        name: create-movement
+        meta:
+          id: req_1a7ea0f7b3b04db7b016ca7603c73dc3
+          created: 1769105237657
+          modified: 1769217419874
+          isPrivate: false
+          description: ""
+          sortKey: -1769077700502
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"produto_id": "2",
+            		"quantidade": -3,
+            		"tipo": "saida"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/estoque-movimentacoes/17
+        name: delete-movement
+        meta:
+          id: req_194812a7f4bd4ae4b6673f9702f66ba1
+          created: 1769123865235
+          modified: 1769217751132
+          isPrivate: false
+          description: ""
+          sortKey: -1769090910623
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Categorias
+    meta:
+      id: fld_ad2768bceff04c5999a7fd33f91a68f6
+      created: 1769219944327
+      modified: 1769219949328
+      sortKey: -1769219944327
+      description: ""
+    children:
+      - url: http://localhost:3000/api/categorias
+        name: get-all-categories
+        meta:
+          id: req_58ac15ef9054418f84b1f99d02a04a99
+          created: 1769219951710
+          modified: 1769220045682
+          isPrivate: false
+          description: ""
+          sortKey: -1769219951710
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/categorias/244
+        name: get-category-by-id
+        meta:
+          id: req_ffdc7e86c1e44afbaef3c6a3a4f38f06
+          created: 1769220061902
+          modified: 1769220086639
+          isPrivate: false
+          description: ""
+          sortKey: -1769162036227
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/categorias
+        name: create-category
+        meta:
+          id: req_95e8de76624047c0be02bd30ddc2f034
+          created: 1769220110482
+          modified: 1769220160802
+          isPrivate: false
+          description: ""
+          sortKey: -1769190993968.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Limpeza",
+              "descricao": "Produtos de limpeza doméstica e indústrial"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/categorias/1244
+        name: update-category-by-id
+        meta:
+          id: req_c1bbae34c73a436390846b31acadf08e
+          created: 1769220250254
+          modified: 1769220332590
+          isPrivate: false
+          description: ""
+          sortKey: -1769176515097.75
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Limpeza indústrial",
+              "descricao": "Produtos de limpeza doméstica e indústrial"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/categorias/1211
+        name: delete-category-by-id
+        meta:
+          id: req_3ed2fa5c4c1e482eba0af159254aab0d
+          created: 1769220353547
+          modified: 1769220379046
+          isPrivate: false
+          description: ""
+          sortKey: -1769169275662.375
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Limpeza indústrial",
+              "descricao": "Produtos de limpeza doméstica e indústrial"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.4.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_96f2f5d452f2132f027622ce07234a69e178d3e2
+    created: 1769021513928
+    modified: 1769021513928
+environments:
+  name: Base Environment
+  meta:
+    id: env_96f2f5d452f2132f027622ce07234a69e178d3e2
+    created: 1769021513926
+    modified: 1769021513926
+    isPrivate: false
