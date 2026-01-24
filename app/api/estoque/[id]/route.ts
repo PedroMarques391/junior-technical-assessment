@@ -10,6 +10,21 @@ export async function PUT(request: Request, { params }: Params) {
     const id = BigInt((await params).id);
     const body = await request.json();
     const { quantidade } = body;
+
+    if (!quantidade) {
+      return NextResponse.json(
+        { error: "Quantidade é obrigatório" },
+        { status: 400 },
+      );
+    }
+
+    if (quantidade <= 0) {
+      return NextResponse.json(
+        { error: "Quantidade deve ser maior que zero" },
+        { status: 400 },
+      );
+    }
+
     const updatedEstoque = await service.updateEstoque(id, { quantidade });
     const updatedEstoqueSerialized = JSON.parse(
       JSON.stringify(updatedEstoque, (key, value) =>
