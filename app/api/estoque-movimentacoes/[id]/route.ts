@@ -18,7 +18,7 @@ export async function DELETE(request: Request, { params }: Params) {
             ? error.message
             : "Falha ao deletar movimentação",
       },
-      { status: 500 },
+      { status: error instanceof Error ? 404 : 500 },
     );
   }
 }
