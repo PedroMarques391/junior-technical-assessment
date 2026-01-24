@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as z from "zod";
 
 // Zod Schemas
@@ -41,7 +41,7 @@ export type CreateProdutoPayload = z.infer<typeof createProdutoSchema>;
 export type UpdateProdutoPayload = z.infer<typeof updateProdutoSchema>;
 
 // API Functions
-const fetchProdutos = async (): Promise<Produto[]> => {
+export const fetchProdutos = async (): Promise<Produto[]> => {
   const response = await fetch("/api/produtos");
   if (!response.ok) {
     throw new Error("Failed to fetch products");
@@ -106,6 +106,8 @@ export const useProdutos = () => {
   return useQuery<Produto[], Error>({
     queryKey: ["produtos"],
     queryFn: fetchProdutos,
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
   });
 };
 

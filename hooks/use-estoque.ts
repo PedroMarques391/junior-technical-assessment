@@ -19,7 +19,7 @@ export interface Estoque {
   };
 }
 
-const fetchStock = async (): Promise<Estoque[]> => {
+export const fetchStock = async (): Promise<Estoque[]> => {
   const response = await fetch("/api/estoque");
   if (!response.ok) {
     throw new Error("Failed to fetch stocks");
@@ -54,6 +54,8 @@ export const useStocks = () => {
   return useQuery<Estoque[], Error>({
     queryKey: ["stocks"],
     queryFn: fetchStock,
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
   });
 };
 

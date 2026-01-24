@@ -21,7 +21,7 @@ export type EstoqueMovimetacaoPayload = z.infer<
   typeof CreateEstoqueMovimetacaoScheme
 >;
 
-const fetchStockMovements = async (): Promise<EstoqueMovimetacao[]> => {
+export const fetchStockMovements = async (): Promise<EstoqueMovimetacao[]> => {
   const response = await fetch("/api/estoque-movimentacoes");
   if (!response.ok) {
     throw new Error("Failed to fetch stock movements");
@@ -50,6 +50,8 @@ export const useStockMovements = () => {
   return useQuery<EstoqueMovimetacao[], Error>({
     queryKey: ["stock-movements"],
     queryFn: fetchStockMovements,
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
   });
 };
 

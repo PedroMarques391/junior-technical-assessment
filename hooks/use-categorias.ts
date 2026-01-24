@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as z from "zod";
 
 // Zod Schemas
@@ -26,7 +26,7 @@ export type CreateCategoriaPayload = z.infer<typeof createCategoriaSchema>;
 export type UpdateCategoriaPayload = z.infer<typeof updateCategoriaSchema>;
 
 // API Functions
-const fetchCategories = async (): Promise<Categoria[]> => {
+export const fetchCategories = async (): Promise<Categoria[]> => {
   const response = await fetch("/api/categorias");
   if (!response.ok) {
     throw new Error("Failed to fetch categories");
@@ -91,6 +91,8 @@ export const useCategories = () => {
   return useQuery<Categoria[], Error>({
     queryKey: ["categorias"],
     queryFn: fetchCategories,
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
   });
 };
 
