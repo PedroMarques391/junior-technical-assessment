@@ -99,6 +99,8 @@ Após concluir essa etapa, realizei ajustes de responsividade para melhorar a ex
 
 ### Correções
 
+A aplicação não validava se um SKU já existia e como o campo SKU é definido como `@unique` no model, a tentativa de criar um SKU duplicado resultava em erro no banco de dados. Para corrigir isso criei o método `findBySku` no repositório e usei no `produtos.service` para verificação antes da criação do produto. Caso o SKU já exista, um erro é lançado e a API retorna status **400** informando que o produto já está cadastrado.
+
 Ao testar as funcionalidades de edição de categorias, identifiquei que o botão Salvar não estava funcionando. Após analisar o código do `edit-categoria-modal` identifiquei uma pequena inconsistência: o updateCategoriaSchema exigia um id, porém esse valor não estava sendo informado em defaultValues.
 
 Para corrigir o problema, foi necessário apenas adicionar o category.id aos defaultValues.
