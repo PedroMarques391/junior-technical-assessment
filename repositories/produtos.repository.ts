@@ -22,6 +22,12 @@ export const findById = async (id: bigint): Promise<produtos | null> => {
   });
 };
 
+export const findBySku = async (sku: string): Promise<produtos | null> => {
+  return prisma.produtos.findUnique({
+    where: { sku },
+  });
+};
+
 export const create = async (
   data: Omit<produtos, "id" | "criado_em">,
 ): Promise<produtos> => {

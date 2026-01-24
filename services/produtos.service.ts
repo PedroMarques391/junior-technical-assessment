@@ -13,6 +13,13 @@ export const createProduto = async (
   data: Omit<produtos, "id" | "criado_em">,
 ): Promise<produtos> => {
   const { sku, nome, categoria_id, estoque_minimo, marca } = data;
+
+  const skuExists = await repository.findBySku(sku);
+
+  if (skuExists) {
+    throw new Error(`O produto com SKU ${sku} já existe.`);
+  }
+
   const newProduto = await repository.create({
     sku,
     nome,

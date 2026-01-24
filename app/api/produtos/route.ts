@@ -61,7 +61,10 @@ export async function POST(request: Request) {
         error:
           error instanceof Error ? error.message : "Falha ao criar produto",
       },
-      { status: 500 },
+      {
+        status:
+          error instanceof Error && error.message.includes("SKU") ? 400 : 500,
+      },
     );
   }
 }
